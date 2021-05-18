@@ -1,0 +1,39 @@
+{
+	"name": "radia-bot",
+	"version": "1.0.0",
+	"fieldDescription": "A bot created to manage the Team-Radiateur's Discord Community Server.",
+	"main": "index.js",
+	"scripts": {
+		"start": "nodemon index.js --no-stdin"
+	},
+	"keywords": [
+		"discord",
+		"bot",
+		"radiateur",
+		"Team-Radiateur"
+	],
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/DrakeXorn/thermostat-bot"
+	},
+	"author": "Christophe 'DrakeXorn' Bernard <me@christophebernard.be>",
+	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/DrakeXorn/thermostat-bot/issues"
+	},
+	"homepage": "https://github.com/DrakeXorn/thermostat-bot#readme",
+	"dependencies": {
+		"@discordjs/opus": "^0.5.0",
+		"array-move": "^3.0.1",
+		"ascii-table": "^0.0.9",
+		"bufferutil": "^4.0.3",
+		"discord.js": "^12.5.1",
+		"dotenv": "^8.2.0",
+		"ffmpeg-static": "^4.2.8",
+		"inquirer": "^8.0.0",
+		"nodemon": "^2.0.7",
+		"pg": "^8.5.1",
+		"simple-youtube-api": "^5.2.1",
+		"utf-8-validate": "^5.0.4"
+	}
+}

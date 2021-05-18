@@ -1,0 +1,33 @@
+const ThermostatEmbed = require("../model/javascript/defaultMessageEmbed");
+
+const restartStrings = require("../strings.json").commands.restart;
+const {modRoleId, creatorId} = require("../config.json");
+
+module.exports = {
+	name: restartStrings.name,
+	description: restartStrings.fieldDescription,
+	execute(command) {
+		if (command.author.id !== creatorId && !command.member.roles.cache.has(modRoleId))
+			command.reply(
+				ThermostatEmbed()
+					.addFields(
+						{
+							name: this.name,
+							value: restartStrings.misc.errors.notMod
+						}
+					)
+			);
+		else {
+			command.reply(
+				ThermostatEmbed()
+					.addField(this.name, restartStrings.misc.success)
+			).then((response) => {
+				console.log(this.name, command.author.username);
+
+				setTimeout(() => {
+                    response.delete().then(() => process.exit(1));
+				}, 2000);
+			});
+		}
+	}
+}

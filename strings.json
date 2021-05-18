@@ -1,0 +1,152 @@
+{
+	"misc": {
+		"embed": {
+			"title": "Le Thermostat vous informe de la température du Radiateur",
+			"footer": "Température du Radiateur"
+		},
+		"errors": {
+			"dbQuery": "Erreur lors de l'accès à la base de données.",
+			"noArgument": "Le Thermostat requiert que vous donniez des informations au circuit d'eau pour traiter votre commande.",
+			"execError": "Une erreur est survenue lors de l'exécution de la commande."
+		},
+		"status": {
+			"startup": {
+				"welcomeArt": "\n ________  __                                                                __                 __     \n|        \\|  \\                                                              |  \\               |  \\    \n \\$$$$$$$$| $$____    ______    ______   ______ ____    ______    _______  _| $$_     ______  _| $$_   \n   | $$   | $$    \\  /      \\  /      \\ |      \\    \\  /      \\  /       \\|   $$ \\   |      \\|   $$ \\  \n   | $$   | $$$$$$$\\|  $$$$$$\\|  $$$$$$\\| $$$$$$\\$$$$\\|  $$$$$$\\|  $$$$$$$ \\$$$$$$    \\$$$$$$\\\\$$$$$$  \n   | $$   | $$  | $$| $$    $$| $$   \\$$| $$ | $$ | $$| $$  | $$ \\$$    \\   | $$ __  /      $$ | $$ __ \n   | $$   | $$  | $$| $$$$$$$$| $$      | $$ | $$ | $$| $$__/ $$ _\\$$$$$$\\  | $$|  \\|  $$$$$$$ | $$|  \\\n   | $$   | $$  | $$ \\$$     \\| $$      | $$ | $$ | $$ \\$$    $$|       $$   \\$$  $$ \\$$    $$  \\$$  $$\n    \\$$    \\$$   \\$$  \\$$$$$$$ \\$$       \\$$  \\$$  \\$$  \\$$$$$$  \\$$$$$$$     \\$$$$   \\$$$$$$$   \\$$$$ \n                                                                                                       \n",
+				"welcomeMessage": "Bienvenue sur le Thermostat du Radiateur version ",
+				"connected": "Le Thermostat est lié au Radiateur, la chaudière tourne à plein régime et le circuit ne fuite pas !",
+				"loading": {
+					"description": "Vérification de la tuyauterie du Radiateur en cours...",
+					"commands": "Commandes...",
+					"events": "Événements...",
+					"file": "Fichier"
+				}
+			},
+			"installation": {
+				"initMessage": "Bienvenue dans l'assistant de configuration du Thermostat version ",
+				"username": "Quel est le nom d'utilisateur ?",
+				"password": "Quel le mot de passe ?",
+				"host": "Quelle est l'URL d'accès à la base de données ?",
+				"port": "Quel est le port d'accès ?",
+				"bannedWords": "Si vous voulez interdire des mots, écrivez-les ici en les séparant d'une virgule :",
+				"databaseName": "Quelle est le nom de la base de données ? (Attention, le schéma doit déjà être créé pour que la connexion se fasse)",
+				"confirmButtonId": "Quel est l'identifiant Discord du bouton de fin des votes ? (par défaut : 828344615722811453 [:white_check_mark:])",
+				"creatorId": "Quel est l'identifiant Discord de l'administrateur principal ?",
+				"modRoleId": "Quel est l'identifiant Discrd du rôle des modérateurs ?",
+				"botId": "Quel est le token Discord du bot ? ",
+				"botName": "Quel est le nom que vous voulez attribuer au bot Discord ?",
+				"commandPrefix": "Quel est le préfixe à utiliser pour les commandes ?",
+				"defaultColor": "Quelle est la couleur par défaut à utiliser dans les embeddings ?",
+				"beginningDBInit": "Raccord du circuit d'eau...",
+				"endDBInit": "Le Radiateur et le Thermostat sont en place ! Appuyez sur Entrée pour continuer.",
+				"error": "Désolé, mais le Radiateur a fuité sur le Thermostat et celui-ci ne fonctionne malheureusement pas pour le moment. Veuillez réessayer plus tard."
+			}
+		}
+	},
+	"commands": {
+		"help": {
+			"name": "help",
+			"fieldDescription": "Affiche les différentes fonctionnalités du Thermostat",
+			"usage": {
+				"command": "!help",
+				"fieldDescription": "Aucun argument"
+			},
+			"misc": {
+				"name": "Nom",
+				"description": "Description",
+				"toString": "Voici la liste des commandes du Thermostat :"
+			}
+		},
+		"banWord": {
+			"name": "banWord",
+			"fieldDescription": "Ajout de mots à la liste des mots interdits (mod/admin-only)",
+			"usage": {
+				"command": "!banWord *mots séparés par une virgule uniquement*",
+				"fieldDescription": "Les mots doivent être séparés par une virgule (pas d'espace) pour être acceptés. Si vous voulez ajouter un groupe de mots, entourez ce groupe par des guillemets. Pour vérifier si le message ne contient que les informations spécifiées, ajoutez \".match\" à la fin du mot/groupe de mots (ex: nard.match,\"quel enfer\".match)",
+				"examples": [
+					"!banWord renarde",
+					"!banWord lenain,\"la renarde rousse\""
+				]
+			},
+			"misc": {
+				"success": "Le(s) mot(s) a/ont bien été ajouté(s) à la base de données.",
+				"name": "Nom :",
+				"error": {
+					"unique": "Ce mot a déjà été ajouté à la base de données."
+				}
+			}
+		},
+		"unbanWord": {
+			"name": "unbanWord",
+			"fieldDescription": "Retrait de mots à la liste des mots interdits (mod-only)",
+			"usage": {
+				"command": "!unbanWord *mots*",
+				"fieldDescription": "Les mots doivent être séparés par une virgule (pas d'espace) pour être acceptés. Si vous voulez ajouter un groupe de mots, entourez ce groupe par de guillemets.",
+				"examples": [
+					"!unbanWord renarde",
+					"!unbanWord \"la renarde rousse\""
+				]
+			},
+			"misc": {
+				"success": "Le(s) mot(s) a/ont bien été supprimé(s) de la base de données."
+			}
+		},
+		"poll": {
+			"name": "poll",
+			"fieldDescription": "📋 Sondez le circuit d'eau pour vous faire une idée des avis inutiles des gens.",
+			"usage": {
+				"command": "!newPoll *question* *réponse 1*,*réponse 2*, *réponse 3*",
+				"fieldDescription": "Autant pour poser votre question que pour les réponses, veuillez entourer les propositions de guillemets."
+			}
+		},
+		"play": {
+			"name": "play",
+			"fieldDescription": "🎶 Ajoutez une musique dans la liste de lecture du Thermostat ! 🎶",
+			"usage": {
+				"command": "!play *url*",
+				"fieldDescription": "Ne spécifiez qu'une URL (YouTube, Spotify [en travaux], Soundcloud) à lire."
+			}
+		},
+		"skip": {
+			"name": "skip",
+			"fieldDescription": "Passez la musique en cours de lecture.",
+			"usage": {
+				"command": "!skip",
+				"fieldDescription": "Aucun argument ne doit être fourni."
+			}
+		},
+		"restart": {
+			"name": "restart",
+			"fieldDescription": "Redémarre le Thermostat (mod/admin-only)",
+			"usage": {
+				"command": "!restart",
+				"fieldDescription": "Aucun argument n'est requis. Redémarre le Thermostat automatiquement."
+			},
+			"misc": {
+				"success": "Redémarrage du Thermostat en cours...",
+				"errors": {
+					"notMod": "Désolé mais vous n'avez pas les droits pour effectuer cette action."
+				}
+			}
+		}
+	},
+	"events": {
+		"removeSpam": {
+			"fieldDescription": {
+				"name": "Oulà, c'est trop chaud pour le Radiateur, ça...",
+				"value": "Désolé, mais le Radiateur ne veut pas de cette eau dans son circuit."
+			},
+			"misc": {
+				"issuer": "A l'origine du message : "
+			}
+		},
+		"clickClosePollButton": {
+			"fieldDescription": {
+				"name": "Ferme le sondage",
+				"value": "Ferme le sondage quand son créateur appuie sur le bouton de validation."
+			}
+		}
+	},
+	"cron": {
+		"goelette": "Goélette au rapport !"
+	}
+}
